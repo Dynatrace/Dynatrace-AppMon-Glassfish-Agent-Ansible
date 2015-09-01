@@ -1,0 +1,11 @@
+---
+- hosts: test-kitchen
+  vars:
+    domain_xml_file: /tmp/domain.xml
+  pre_tasks:
+  - file: path={{ domain_xml_file }} state=touch
+  - copy: dest={{ domain_xml_file }} content="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<java-config/>"
+  roles:
+  - role: dynatrace.Dynatrace-Glassfish-Agent
+    dynatrace_glassfish_agent_glassfish_domain_xml_file: "{{ domain_xml_file }}"
+    dynatrace_agents_linux_installer_file_url: http://10.0.2.2/dynatrace/dynatrace-agents.jar
