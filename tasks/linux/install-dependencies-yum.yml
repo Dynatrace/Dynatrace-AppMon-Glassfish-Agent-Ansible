@@ -1,0 +1,12 @@
+---
+- name: Check if 'xmlstarlet' is on the PATH
+  shell: which xmlstarlet
+  sudo: yes
+  ignore_errors: yes
+  register: which_xmlstarlet_cmd
+
+- name: Install package 'xmlstarlet'
+  yum: pkg=xmlstarlet state=present
+  register: xmlstarlet_install
+  when: which_xmlstarlet_cmd.rc != 0
+  sudo: yes

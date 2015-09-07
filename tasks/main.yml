@@ -1,14 +1,3 @@
 ---
-- name: Install xmlstarlet package
-  apt: name=xmlstarlet state=present update_cache=true
-  sudo: yes
-
-- name: Add the -agentpath string to the Glassfish domain.yml at {{ dynatrace_glassfish_agent_glassfish_domain_xml_file }}
-  shell: "xmlstarlet ed -L -s '//java-config' -t elem -n 'jvm-options' -v '{{ dynatrace_glassfish_agent_agentpath_string }}' {{ dynatrace_glassfish_agent_glassfish_domain_xml_file }}"
-  when: dynatrace_glassfish_agent_state == "present"
-  sudo: yes
-
-- name: Remove the -agentpath string from the Glassfish domain.yml at {{ dynatrace_glassfish_agent_glassfish_domain_xml_file }}
-  shell: "xmlstarlet ed -L -d '//java-config/jvm-options[text()={{ dynatrace_glassfish_agent_agentpath_string }}]' {{ dynatrace_glassfish_agent_glassfish_domain_xml_file }}"
-  when: dynatrace_glassfish_agent_state == "absent"
-  sudo: yes
+- include: install-dynatrace-glassfish-agent-linux.yml
+  when: ansible_system == "Linux"

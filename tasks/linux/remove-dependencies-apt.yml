@@ -1,0 +1,6 @@
+---
+- name: Remove package 'xmlstarlet'
+  apt: pkg=xmlstarlet state=absent
+  when: not xmlstarlet_install|skipped
+  ignore_errors: yes
+  sudo: yes
