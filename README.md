@@ -1,8 +1,8 @@
 # Dynatrace-Glassfish-Agent-Ansible
 
-An [Ansible](http://www.ansible.com) role for automated deployments of the [Dynatrace](http://www.bit.ly/dttrial) Java Agent for [Glassfish](https://glassfish.java.net).
+This Ansible role installs and configures the Dynatrace Agent of the [Dynatrace Application Monitoring](http://www.dynatrace.com/en/products/application-monitoring.html) solution for the Apache Glassfish application server.
 
-This role makes the Dynatrace Agent available to Glassfish by injecting an *-agentpath* option into a particular Glassfish `domain.xml`. **You will have to restart your application after placing the agent.**
+**Note:** you will have to restart the application server after placing the agent.
 
 ## Download
 
@@ -17,13 +17,17 @@ This roles depends on the following roles:
 
 - [Dynatrace-Agents](https://galaxy.ansible.com/list#/roles/2620)
 
+## Description
+
+This recipe downloads and installs the most recent version of the Dynatrace Agents package from [http://downloads.dynatracesaas.com](http://downloads.dynatracesaas.com) and integrates the agent with the Apache Glassfish application server. The default download link can be overridden via the `dynatrace_agents_linux_installer_file_url` attribute. Alternatively, you can place the installer artifact as `dynatrace-agent.jar` in the role's `files` directory from where it will be picked up during the installation. Please refer to `defaults/main.yml` for a list of supported attributes.
+
 ## Role Variables
 
 As defined in ```defaults/main.yml```:
 
 | Name                                                  | Default                                  | Description |
 |-------------------------------------------------------|------------------------------------------|-------------|
-| *dynatrace_glassfish_agent_glassfish_domain_xml_file* | **required**                             | The name of the `domain.yml`file to be modified. |
+| *dynatrace_glassfish_agent_glassfish_domain_xml_file* | **required**                             | The name of the `domain.xml` file to be modified. |
 | *dynatrace_glassfish_agent_name*                      | glassfish-agent                          | The name of the Glassfish Agent as it appears in Dynatrace. |
 | *dynatrace_glassfish_agent_collector_hostname*        | localhost                                | The location of the collector the Agent shall connect to. |
 | *dynatrace_glassfish_agent_collector_port*            | 9998                                     | The port on the collector the Agent shall connect to. |
@@ -32,40 +36,51 @@ As defined in ```defaults/main.yml```:
 
 ## Example Playbook
 
-	- hosts: all
-	  roles:
-	    - role: dynatrace.Dynatrace-Glassfish-Agent
-	      dynatrace_glassfish_agent_glassfish_domain_xml_file: /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
+```
+- hosts: all
+  roles:
+    - role: dynatrace.Dynatrace-Glassfish-Agent
+      dynatrace_glassfish_agent_glassfish_domain_xml_file: /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
+```
 
 ## Testing
 
-We use [Test Kitchen](http://kitchen.ci) to automatically test our automated deployments with [Serverspec](http://serverspec.org):
+We use [Test Kitchen](http://kitchen.ci) to automatically test our automated deployments with [Serverspec](http://serverspec.org) and [RSpec](http://rspec.info/):
 
-1) Install Kitchen and its dependencies from within the project's directory:
+1) Install Test Kitchen and its dependencies from within the project's directory:
 
 ```
 gem install bundler
 bundle install
 ```
 
-2) Run tests
+2) Run all tests
 
 ```
 kitchen test
 ```
 
+By default, we run our tests inside [Docker](https://www.docker.com/) containers as this considerably speeds up testing time (see `.kitchen.yml`).
+
 ## Additional Resources
 
-- [Blog: How to Automate Enterprise Application Monitoring with Ansible](http://apmblog.dynatrace.com/2015/03/04/how-to-automate-enterprise-application-monitoring-with-ansible/)
-- [Blog: How to Automate Enterprise Application Monitoring with Ansible - Part II](http://apmblog.dynatrace.com/2015/04/23/how-to-automate-enterprise-application-monitoring-with-ansible-part-ii/)
-- [Slide Deck: Automated Deployments](http://slideshare.net/MartinEtmajer/automated-deployments-slide-share)
-- [Slide Deck: Automated Deployments (of Dynatrace) with Ansible](http://www.slideshare.net/MartinEtmajer/automated-deployments-with-ansible)
-- [Slide Deck: Testing Ansible Roles with Test Kitchen, Serverspec and RSpec](http://www.slideshare.net/MartinEtmajer/testing-ansible-roles-with-test-kitchen-serverspec-and-rspec-48185017)
-- [Tutorials: Automated Deployments (of Dynatrace) with Ansible](https://community.compuwareapm.com/community/display/LEARN/Tutorials+on+Automated+Deployments#TutorialsonAutomatedDeployments-ansible)
+### Blogs
+
+- [How to Automate Enterprise Application Monitoring with Ansible](http://apmblog.dynatrace.com/2015/03/04/how-to-automate-enterprise-application-monitoring-with-ansible/)
+- [How to Automate Enterprise Application Monitoring with Ansible - Part II](http://apmblog.dynatrace.com/2015/04/23/how-to-automate-enterprise-application-monitoring-with-ansible-part-ii/)
+
+### Presentations
+
+- [Automated Deployments (of Dynatrace) with Ansible](http://www.slideshare.net/MartinEtmajer/automated-deployments-with-ansible)
+- [Test-Driven Infrastructure with Ansible, Test Kitchen, Serverspec and RSpec](http://www.slideshare.net/MartinEtmajer/testing-ansible-roles-with-test-kitchen-serverspec-and-rspec-48185017)
+
+### Tutorials
+
+- [Automated Deployments (of Dynatrace) with Ansible](https://community.compuwareapm.com/community/display/LEARN/Tutorials+on+Automated+Deployments#TutorialsonAutomatedDeployments-ansible)
 
 ## Questions?
 
-Feel free to post your questions on the Dynatrace Community's [Continuous Delivery Forum](https://community.dynatrace.com/community/pages/viewpage.action?pageId=46628921).
+Feel free to post your questions on the Dynatrace Community's [Continuous Delivery Forum](https://answers.dynatrace.com/spaces/148/open-q-a_2.html?topics=continuous%20delivery).
 
 ## License
 
