@@ -8,14 +8,14 @@ This Ansible role installs and configures the Dynatrace Agent of the [Dynatrace 
 
 The role is available via:
 
-- [Ansible Galaxy](https://galaxy.ansible.com/list#/roles/5326)
+- [Ansible Galaxy](https://galaxy.ansible.com/Dynatrace/Dynatrace-Glassfish-Agent)
 - [GitHub](https://github.com/Dynatrace/Dynatrace-Glassfish-Agent-Ansible)
 
 ## Dependencies
 
 This roles depends on the following roles:
 
-- [Dynatrace-Agent](https://galaxy.ansible.com/list#/roles/5320)
+- [Dynatrace-Agent](https://galaxy.ansible.com/Dynatrace/Dynatrace-Agent)
 
 ## Description
 
