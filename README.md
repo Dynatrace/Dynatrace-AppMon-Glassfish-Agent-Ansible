@@ -39,7 +39,7 @@ As defined in ```defaults/main.yml```:
 ```
 - hosts: all
   roles:
-    - role: dynatrace.Dynatrace-Glassfish-Agent
+    - role: Dynatrace.Dynatrace-Glassfish-Agent
       dynatrace_glassfish_agent_glassfish_domain_xml_file: /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
 ```
 
