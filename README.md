@@ -15,11 +15,11 @@ The role is available via:
 
 This roles depends on the following roles:
 
-- [Dynatrace-Agents](https://galaxy.ansible.com/list#/roles/5320)
+- [Dynatrace-Agent](https://galaxy.ansible.com/list#/roles/5320)
 
 ## Description
 
-This recipe downloads and installs the most recent version of the Dynatrace Agents package from [http://downloads.dynatracesaas.com](http://downloads.dynatracesaas.com) and integrates the agent with the Apache Glassfish application server. The default download link can be overridden via the `dynatrace_agents_linux_installer_file_url` attribute. Alternatively, you can place the installer artifact as `dynatrace-agent.jar` in the role's `files` directory from where it will be picked up during the installation. Please refer to `defaults/main.yml` for a list of supported attributes.
+This recipe downloads and installs the most recent version of the Dynatrace Agent from [http://downloads.dynatracesaas.com](http://downloads.dynatracesaas.com) and integrates the agent with the Apache Glassfish application server. The default download link can be overridden via the `dynatrace_agents_linux_installer_file_url` attribute. Alternatively, you can place the installer artifact as `dynatrace-agent.jar` in the role's `files` directory from where it will be picked up during the installation. Please refer to `defaults/main.yml` for a list of supported attributes.
 
 ## Role Variables
 

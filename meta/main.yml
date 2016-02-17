@@ -18,4 +18,4 @@ galaxy_info:
   galaxy_tags:
   - monitoring
 dependencies:
-- role: Dynatrace.Dynatrace-Agents
+- role: Dynatrace.Dynatrace-Agent
