@@ -3,7 +3,7 @@
   shell: which xmlstarlet
   register: which_xmlstarlet_cmd
   ignore_errors: yes
-  sudo: yes
+  become: yes
 
 - name: Install package 'xmlstarlet'
   yum:
@@ -11,4 +11,4 @@
     state: present
   register: xmlstarlet_install
   when: which_xmlstarlet_cmd.rc != 0
-  sudo: yes
+  become: yes
