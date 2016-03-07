@@ -1,6 +1,8 @@
 ---
 - name: Remove package 'xmlstarlet'
-  yum: pkg=xmlstarlet state=absent
-  when: not xmlstarlet_install|skipped
+  yum:
+    pkg: xmlstarlet
+    state: absent
   ignore_errors: yes
+  when: not xmlstarlet_install | skipped
   sudo: yes
